@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import './question.dart';
+import './answer.dart';
 
 void main(){
   runApp(MyApp());
@@ -52,15 +53,9 @@ class _MyAppState extends State<MyApp> {
     ),
 
 
-   RaisedButton(child:Text("Answer 1"),
-   onPressed: _answerQuestion,
-   ),
-   RaisedButton(child: Text("Answer 2"),
-    onPressed: _answerQuestion,
-    ),
-   RaisedButton(child: Text("Answer 2"),
-    onPressed: _answerQuestion,
-    ),  
+    Answer(_answerQuestion),
+    Answer(_answerQuestion),
+    Answer(_answerQuestion),  
    ]),
 
 
@@ -68,6 +63,6 @@ class _MyAppState extends State<MyApp> {
     theme: ThemeData(primarySwatch: Colors.blue, accentColor:Colors.blue),
     );
   }
-}
+} 
 
 
