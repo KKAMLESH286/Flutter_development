@@ -30,7 +30,7 @@ class _MyAppState extends State<MyApp> {
         _questionIndex = _questionIndex+1
       });
       
-      print(_questionIndex);
+      
     }
 
     @override
