@@ -18,45 +18,61 @@ class MyApp extends StatefulWidget{
 
 
 class _MyAppState extends State<MyApp> {
-  
+    final questions = const [
+      {
+      'questionText':'What\'s your favourite color?', 
+      'answerText': ['Black', 'Red', 'Green', 'White']
+      },
+      {
+        'questionText': 'What\'s your favourite animal?',
+      'answerText': ['Dog', 'Cat', 'Rabbit']
+      },
+      {
+        'questionText': 'What\'s your favourite movie?',
+      'answerText': ['Tenet', 'Pulp Fiction', 'Inception']
+      }
+    ];
 
   
 
   
     var _questionIndex = 0;
-
+    
     void _answerQuestion(){
+      
       setState(()=>{
         _questionIndex = _questionIndex+1
+        
       });
-      
+      if (_questionIndex < questions.length) {
+          print('We have more questions!');
+    } else {
+      print('No more questions!');
+    }
       
     }
 
     @override
   Widget build(BuildContext context){
 
-    var questions = [
-      'What\'s your favourite color?',
-      'What\'s your favourite animal?',
-      'What\'s your favourite movie?'
-    ];
+    
     return MaterialApp(home: Scaffold(appBar: AppBar(
     title: Text('Simple Quiz App', style: TextStyle(fontSize: 25),),
     centerTitle: true,
     elevation: 30,
     
   ),
-  body: Column(
+  body: _questionIndex < questions.length ? Column(
     children: [
-    Question(questions[_questionIndex],
+    Question(
+      questions[_questionIndex]['questionText'],
     ),
 
 
-    Answer(_answerQuestion),
-    Answer(_answerQuestion),
-    Answer(_answerQuestion),  
-   ]),
+    ...(questions[_questionIndex]['answerText'] as List<String>).map((answerText){
+      return Answer(_answerQuestion, answerText);
+    }).toList()  
+   ]): Center(child: Text('You did it'),) ,
 
 
     ),
